@@ -6,30 +6,15 @@ import { setMenuStatus } from '../store/menuSlice';
 const MenuContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 30%;
+  border-right: 1px solid #ececec;
 	height: 100%;
 	background-color: white;
 	position: absolute;
-	top: 85px;;
+	top: 82px;
 `
 
 export const MenuItems = [
-	{
-		title: '연애/결혼',
-		path: '/relationship',
-	},
-	{
-		title: '육아',
-		path: '/childcare',
-	},
-	{
-		title: '진로/직업',
-		path: '/occupation',
-	},
-	{
-		title: '아무거나',
-		path: '/others',
-	},
 	{
 		title: 'Ask Gemini',
 		path: '/askGemini'
@@ -42,6 +27,14 @@ function Menu() {
 	const closeHamburgerMenu = () => {
 		dispatch(setMenuStatus({ open: false }));
 	}
+	const handleMouseOut = (event) => {
+    event.target.style.backgroundColor = '';
+		event.target.style.color = 'black';
+  }; 
+	const handleMouseOver = (event) => {
+    event.target.style.backgroundColor = '#D0C9C0';
+		event.target.style.color = '#9A7E6F';
+  };
 
 	return (
 		<MenuContainer>
@@ -53,7 +46,8 @@ function Menu() {
 						'fontSize': '18px',
 						'borderBottom': '1px solid #ececec',
 						'padding': '1rem'
-					}} onClick={closeHamburgerMenu} to={menu.path}>
+					}} onMouseOver={handleMouseOver}
+					onMouseOut={handleMouseOut} onClick={closeHamburgerMenu} to={menu.path}>
 					{menu.title}
 				</Link>
 			))}
