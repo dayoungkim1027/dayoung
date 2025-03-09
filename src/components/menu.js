@@ -14,6 +14,14 @@ const MenuContainer = styled.div`
 	top: 82px;
 `
 
+const ExternalLink = styled.a`
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+	border-bottom: 1px solid #ececec;
+	padding: 1rem;
+`
+
 export const MenuItems = [
 	{
 		title: 'Ask Gemini',
@@ -51,6 +59,7 @@ function Menu() {
 					{menu.title}
 				</Link>
 			))}
+			<ExternalLink href="https://mbti-survey-app-dayoung.vercel.app/" rel="noreferrer" alt="homepage">MBTI survey app</ExternalLink>
 
 		</MenuContainer>
 	)
