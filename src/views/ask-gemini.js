@@ -74,6 +74,7 @@ const InfoLink = styled.a`
 `
 
 const LabelTitle = styled.label`
+	white-space: nowrap;
 	color: black;
 	margin-right: .5rem;
 `
@@ -202,7 +203,7 @@ function AskGemini() {
 						<InfoLink href="https://react.dev/" target="_blank" rel="noreferrer"> React </InfoLink> for frontend, 
 						<InfoLink href="https://nodejs.org/en" target="_blank" rel="noreferrer"> NodeJS </InfoLink> and
 						<InfoLink href="https://expressjs.com/" target="_blank" rel="noreferrer"> ExpressJS </InfoLink> for backend.
-						All of this made with ♥ by Dayoung
+						All of these made with ♥ by Dayoung
 					</Label>
 				</Info>
 			</OuterDiv>
