@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as LinkedIn } from '../assets/linkedin.svg';
 import { ReactComponent as Github } from '../assets/github.svg';
 import { Link } from 'react-router-dom';
+import ResumeDownload from '../assets/downloadResume.png';
 
 const Portfolios = styled.div`
 	display: flex;
@@ -33,6 +34,7 @@ const Actions = styled.div`
 	display: flex;
 	flex-direction: row;
 	margin-left: auto;
+	margin-top: 1rem;
 `
 
 const ClickableIcon = styled.a`
@@ -52,11 +54,21 @@ function Home() {
 		event.target.style.border = '1px solid black';
 		event.target.style.color = 'black';
 	}; 
-		const handleMouseOver = (event) => {
+	const handleMouseOver = (event) => {
 		event.target.style.backgroundColor = '#F8EDE3';
 		event.target.style.border = '1px solid #F8EDE3';
 		event.target.style.color = '#D0B8A8';
 	};
+	const onButtonClick = () => {
+		const pdfUrl = "/DayoungKim_resume.pdf";
+		const link = document.createElement("a");
+		link.href = pdfUrl;
+		link.download = "DayoungKim_SWE_Resume.pdf";
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	};
+
 
 	return (
 		<div className="Home">
@@ -70,6 +82,9 @@ function Home() {
 						</ClickableIcon>
 						<ClickableIcon target='_blank' rel="noreferrer" href="https://www.linkedin.com/in/dayoung-kim-b7b4b8a1">
 							<Github style={{ 'width': '45px', 'height': '50px', 'margin-left': '.5rem' }}/>
+						</ClickableIcon>
+						<ClickableIcon onClick={onButtonClick} style={{ 'cursor': 'pointer'}}>
+							<img src={ResumeDownload} alt="Download Resume" style={{ 'width': '45px', 'height': '50px', 'margin-left': '.5rem' }}/>
 						</ClickableIcon>
 					</Actions>
 				</Portfolio>
@@ -102,7 +117,7 @@ function Home() {
 						}} onMouseOver={handleMouseOver}
 						onMouseOut={handleMouseOut} to="/polls">
 						MBTI Survey App
-					</Link>
+					</Link>					
 			</Products>
 			</Portfolios>
 		</div>
