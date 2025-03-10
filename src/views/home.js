@@ -3,6 +3,7 @@ import { ReactComponent as LinkedIn } from '../assets/linkedin.svg';
 import { ReactComponent as Github } from '../assets/github.svg';
 import { Link } from 'react-router-dom';
 import ResumeDownload from '../assets/downloadResume.png';
+import ProfileImage from '../assets/Dayoung-profile.jpeg';
 
 const Portfolios = styled.div`
 	display: flex;
@@ -48,6 +49,9 @@ const Products = styled.div`
 	justify-content: space-around;
 `
 
+const ProfilePhoto = styled.div`
+`
+
 function Home() {
 	const handleMouseOut = (event) => {
 		event.target.style.backgroundColor = '';
@@ -74,6 +78,7 @@ function Home() {
 		<div className="Home">
 			<Portfolios>
 				<Portfolio>
+					<ProfilePhoto src={ProfileImage}/>
 					<Name>DAYOUNG KIM</Name>
 					<Occupation>Frontend Software Engineer</Occupation>
 					<Actions>
