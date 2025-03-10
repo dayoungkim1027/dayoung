@@ -166,6 +166,11 @@ function AskGemini() {
 					</Intro>
 				</IntroContainer>
 
+				{questionToChat && (
+					<UserInputContainer>
+						<UserQuestion>{questionToChat}</UserQuestion>
+					</UserInputContainer>
+				)}
 
 				{answer && (
 					<GeminiContainer>
@@ -188,11 +193,7 @@ function AskGemini() {
 						</AnswerContainer>
 					</GeminiContainer>
 				)}
-				{questionToChat && (
-					<UserInputContainer>
-						<UserQuestion>{questionToChat}</UserQuestion>
-					</UserInputContainer>
-				)}
+
 				<TextInput
 					placeholder="Type your question here.."
 					disabled={loading}
