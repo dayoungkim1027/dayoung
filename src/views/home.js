@@ -177,7 +177,7 @@ function Home() {
 
 				<ProjectsContainer>
 					<ProjectsTitle>
-						SOME OF MY LATEST WORK
+						SOME OF MY PERSONAL PROJECTS
 					</ProjectsTitle>
 					<Products>
 						{myWork.map((work, index) => (
@@ -206,6 +206,7 @@ function Home() {
 						))}			
 					</Products>
 				</ProjectsContainer>
+
 			</Portfolios>
 		</div>
 	);
