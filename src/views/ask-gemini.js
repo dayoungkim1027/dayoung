@@ -137,7 +137,7 @@ const AIimageContainer = styled.div`
 `
 
 const IntroContainer = styled.div`
-	margin: 2rem;
+	margin: 4rem 2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
