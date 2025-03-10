@@ -41,7 +41,7 @@ function Navigation() {
 					'padding': '1.5rem',
 					'white-space': 'nowrap'
 				}} to="/">
-				DK
+				Dayoung's Portfolio
 			</Link>
 		</NavigationContainer>
 	);

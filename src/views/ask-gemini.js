@@ -1,35 +1,42 @@
 import styled from 'styled-components';
 import askGemini from '../api/askGemini';
 import { useState } from 'react';
-import Thinker from '../assets/thinker.png';
-import AI from '../assets/ai.png';
+import Pentagon from '../assets/pentagon.png';
 
 const GeminiContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	height: 15em;
+	margin: 1rem 4rem;
 `
 
 const AnswerContainer = styled.div`
-	border: 1px solid #B4B4B8;
+	background-color: #F6F5F2;
 	border-radius: 7px;
-	width: 13em;
-	height: 15em;
+	max-width: 80%;
 	overflow: scroll;
+	margin-left: .5rem;
+`
+
+const UserQuestion = styled.div`
+	background-color: black;
+	border-radius: 7px;
+	margin: 0;
+	padding: 1rem;
+	margin-left: auto;
+	max-width: 80%;
 `
 
 const TextInput = styled.textarea`
+	display: flex;
 	padding: 1rem;
-	width: -webkit-fill-available;
-	border: 1px solid #B4B4B8;
-	border-radius: unset;
+	margin: 1rem 4rem .5rem;
+	border: 1px solid grey;
 	border-radius: 7px;
 `
 
 const Answer = styled.p`
 	margin: 0;
 	padding: 1rem;
-	overflow: scroll;
 	margin-left: auto;
 `
 
@@ -42,16 +49,9 @@ const NonAnswer = styled.p`
 
 const UserInputContainer = styled.div`
 	display: flex;
-	flex-direction: row;
-	order: 2;
-  margin-left: auto;
-	height: 15em;
-`
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: row;
-	margin: 4rem;
+	margin: 1rem 4rem;
+	color: white;
+	border-radius: 7px;
 `
 
 const Loading = styled.div`
@@ -59,23 +59,14 @@ const Loading = styled.div`
   text-align: center;
 `
 
-const ThinkerImg = styled.img`
-	width: 5em;
-	height: min-content;
-	display: flex;
-  margin-top: auto;
-`
-
 const AIimage = styled.img`
-	width: 5em;
-	height: min-content;
-	display: flex;
-  margin-top: auto;
+	width: 30px;
+	padding: 7px;
 `
 
 const Info = styled.div`
 	display: flex;
-	margin: 2rem;
+	margin: 0 4rem;
 `
 
 const Label = styled.label`
@@ -90,9 +81,52 @@ const LabelTitle = styled.label`
 	margin-right: .5rem;
 `
 
+const OuterDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+`
+
+const Heading = styled.div`
+	display: flex;
+	flex-direction: row;
+	font-weight: bolder;
+	padding: 1rem 1.5rem;
+
+	background-color: black;
+	color: white;
+`
+
+const HeadingTitle = styled.p`
+	font-size: 27px;
+  margin: 0;
+	margin-left: 1rem;
+`
+const AIimageContainer = styled.div`
+	background-color: black;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-top: auto;
+`
+
+const IntroContainer = styled.div`
+	margin: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  justify-content: center;
+`
+
+const Intro = styled.p`
+	text-align: center;
+	color: grey;
+`
+
 function AskGemini() {
 	const [question, setQuestion] = useState('');
 	const [answer, setAnswer] = useState('');
+	const [questionToChat, setQuestionToChat] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 	const onTextInputChange = (event) => {
@@ -101,6 +135,7 @@ function AskGemini() {
 
 	const handleKeyDown = async (event) => {
 		if (event.key === 'Enter') {
+			setQuestionToChat(question);
 			setLoading(true);
 			await askGemini(question).then((answer) => {
 				setAnswer(answer);
@@ -114,38 +149,68 @@ function AskGemini() {
 
 	return (
 		<>
-			<Container>
-				<GeminiContainer>
-					<AIimage src={AI} alt="AI answering question"/>
-					<AnswerContainer>
-						{!loading && !answer && !error && (
-							<Loading>...</Loading>
-						)}
-						{answer && (
-							<Answer>{answer}</Answer>
-						)}
-						{!answer && error && (
-							<NonAnswer>{error}</NonAnswer>
-						)}
-						{loading && (
-							<Loading>Thinking...</Loading>
-						)}
-					</AnswerContainer>
-				</GeminiContainer>
-				<UserInputContainer>
-					<TextInput placeholder="Type your question here.." disabled={loading} onKeyDown={handleKeyDown} onChange={onTextInputChange} />
-					<ThinkerImg src={Thinker} alt="Me asking question"/>
-				</UserInputContainer>
-			</Container>
-			<Info>
-				<LabelTitle>Powered by: </LabelTitle>
-				<Label>
-					<InfoLink href="https://vercel.com/" target="_blank" rel="noreferrer"> Vercel </InfoLink> for hosting, 
-					<InfoLink href="https://react.dev/" target="_blank" rel="noreferrer"> React </InfoLink> for frontend, 
-					<InfoLink href="https://nodejs.org/en" target="_blank" rel="noreferrer"> NodeJS </InfoLink> and
-					<InfoLink href="https://expressjs.com/" target="_blank" rel="noreferrer"> ExpressJS </InfoLink> for backend
-				</Label>
-			</Info>
+			<OuterDiv>
+				<Heading>
+					<img style={{'width': '30px' }} src={Pentagon} alt="ai logo"/>
+					<HeadingTitle style={{}}>DeeKay</HeadingTitle>
+				</Heading>
+
+				<IntroContainer>
+					<AIimageContainer>
+						<AIimage src={Pentagon} alt="AI answering question"/>
+					</AIimageContainer>
+					<HeadingTitle style={{}}>DeeKay</HeadingTitle>
+					<Intro>
+						Hi! I'm DeeKay! (Gemini 2.0 Flash)<br></br>
+						Ask me anything!
+					</Intro>
+				</IntroContainer>
+
+
+				{answer && (
+					<GeminiContainer>
+						<AIimageContainer>
+							<AIimage src={Pentagon} alt="AI answering question"/>
+						</AIimageContainer>
+						<AnswerContainer>
+							{!loading && !answer && !error && (
+								<Loading>...</Loading>
+							)}
+							{answer && (
+								<Answer>{answer}</Answer>
+							)}
+							{!answer && error && (
+								<NonAnswer>{error}</NonAnswer>
+							)}
+							{loading && (
+								<Loading>Thinking...</Loading>
+							)}
+						</AnswerContainer>
+					</GeminiContainer>
+				)}
+				{questionToChat && (
+					<UserInputContainer>
+						<UserQuestion>{questionToChat}</UserQuestion>
+					</UserInputContainer>
+				)}
+				<TextInput
+					placeholder="Type your question here.."
+					disabled={loading}
+					onKeyDown={handleKeyDown}
+					onChange={onTextInputChange}
+				/>
+				<Info>
+					<LabelTitle>Powered by: </LabelTitle>
+					<Label>
+						<InfoLink href="https://deepmind.google/technologies/gemini/flash/" target="_blank" rel="noreferrer"> Gemini 2.0 Flash </InfoLink> for LLM API,
+						<InfoLink href="https://vercel.com/" target="_blank" rel="noreferrer"> Vercel </InfoLink> for hosting, 
+						<InfoLink href="https://react.dev/" target="_blank" rel="noreferrer"> React </InfoLink> for frontend, 
+						<InfoLink href="https://nodejs.org/en" target="_blank" rel="noreferrer"> NodeJS </InfoLink> and
+						<InfoLink href="https://expressjs.com/" target="_blank" rel="noreferrer"> ExpressJS </InfoLink> for backend.
+						All of this made with ♥ by Dayoung
+					</Label>
+				</Info>
+			</OuterDiv>
 			
 		</>
 	)

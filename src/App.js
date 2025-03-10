@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './views/home'
 import styled from 'styled-components';
 import Poll from './views/poll';
+import PollsPage from './views/polls-page';
 import PollDetail from './views/poll-detail';
 import CreatePost from './views/create-post';
 import Menu from './components/menu';
@@ -24,6 +25,7 @@ function App() {
       <Navigation style={{'position': 'sticky', 'top': '0'}}></Navigation>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/polls" element={<PollsPage/>}/>
         <Route path="/polls/:state" element={<Poll/>}/>
         <Route path="/polls/:state/survey-results" element={<PollDetail/>}/>
         <Route path="/create-post" element={<CreatePost/>}/>
@@ -31,7 +33,7 @@ function App() {
         <Route path="/childcare" element={<ChildcarePolls/>}/>
         <Route path="/occupation" element={<OccupationPolls/>}/>
         <Route path="/others" element={<OtherPolls/>}/>
-        <Route path="/askGemini" element={<GeminiPage/>}/>
+        <Route path="/askDeeKay" element={<GeminiPage/>}/>
       
       </Routes>
       

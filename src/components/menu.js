@@ -36,13 +36,13 @@ function Menu() {
 		dispatch(setMenuStatus({ open: false }));
 	}
 	const handleMouseOut = (event) => {
-    event.target.style.backgroundColor = '';
-		event.target.style.color = 'black';
-  }; 
-	const handleMouseOver = (event) => {
-    event.target.style.backgroundColor = '#D0C9C0';
-		event.target.style.color = '#9A7E6F';
-  };
+		event.target.style.backgroundColor = '';
+			event.target.style.color = 'black';
+	}; 
+		const handleMouseOver = (event) => {
+		event.target.style.backgroundColor = '#D0C9C0';
+			event.target.style.color = '#9A7E6F';
+	};
 
 	return (
 		<MenuContainer>
