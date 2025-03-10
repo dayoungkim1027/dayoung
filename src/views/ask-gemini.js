@@ -3,6 +3,7 @@ import askGemini from '../api/askGemini';
 import { useState } from 'react';
 import Pentagon from '../assets/pentagon.png';
 import ReactMarkdown from 'react-markdown';
+import Ellipsis from './ellipsis';
 
 const GeminiContainer = styled.div`
 	display: flex;
@@ -51,7 +52,7 @@ const UserInputContainer = styled.div`
 `
 
 const Loading = styled.div`
-	margin: 1.5rem;
+	margin: 1rem 0;
   text-align: center;
 `
 
@@ -143,14 +144,6 @@ function AskGemini() {
 		}
 	}
 
-	const sanitizeAnswer = (answer) => {
-		return answer
-			.replace(/\*\*/g, "<strong>")
-			.replace(/\*\*/g, "</strong>")
-			.replace(/\*/g, "<italic>")
-			.replace(/\*/g, "</italic>")
-	};
-
 	return (
 		<>
 			<OuterDiv>
@@ -176,15 +169,12 @@ function AskGemini() {
 					</UserInputContainer>
 				)}
 
-				{answer && (
+				{(answer || loading) && (
 					<GeminiContainer>
 						<AIimageContainer>
 							<AIimage src={Pentagon} alt="AI answering question"/>
 						</AIimageContainer>
 						<AnswerContainer>
-							{!loading && !answer && !error && (
-								<Loading>...</Loading>
-							)}
 							{answer && (
 								<ReactMarkdown>{answer}</ReactMarkdown>
 							)}
@@ -192,7 +182,7 @@ function AskGemini() {
 								<NonAnswer>{error}</NonAnswer>
 							)}
 							{loading && (
-								<Loading>Thinking...</Loading>
+								<Loading><Ellipsis/></Loading>
 							)}
 						</AnswerContainer>
 					</GeminiContainer>
