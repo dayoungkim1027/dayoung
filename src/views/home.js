@@ -153,7 +153,7 @@ function Home() {
 		{
 			name: 'MBTI Survey App',
 			src: '/mbti-app.png',
-			path: '/polls',
+			path: 'https://mbti-survey-app-dayoung.vercel.app',
 			description: 'Survey app with polls and comments',
 		}
 	]
