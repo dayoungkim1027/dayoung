@@ -11,6 +11,10 @@ const GeminiContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	margin: 1rem 4rem;
+
+	@media (max-width: 770px) {
+		margin: 1rem;
+	}
 `
 
 const AnswerContainer = styled.div`
@@ -20,6 +24,10 @@ const AnswerContainer = styled.div`
 	overflow: scroll;
 	margin-left: .5rem;
 	padding: 0 1rem;
+
+	@media (max-width: 770px) {
+		max-width: 70%;
+	}
 `
 
 const UserQuestion = styled.div`
@@ -29,6 +37,10 @@ const UserQuestion = styled.div`
 	padding: 1rem;
 	margin-left: auto;
 	max-width: 80%;
+
+	@media (max-width: 770px) {
+		max-width: 70%;
+	}
 `
 
 const TextInput = styled.textarea`
@@ -37,6 +49,10 @@ const TextInput = styled.textarea`
 	margin: 1rem 4rem .5rem;
 	border: 1px solid grey;
 	border-radius: 7px;
+
+	@media (max-width: 770px) {
+		margin: 1rem 1rem .5rem;
+	}
 `
 
 const NonAnswer = styled.p`
@@ -51,6 +67,10 @@ const UserInputContainer = styled.div`
 	margin: 1rem 4rem;
 	color: white;
 	border-radius: 7px;
+
+	@media (max-width: 770px) {
+		margin: 1rem;
+	}
 `
 
 const Loading = styled.div`
@@ -66,16 +86,22 @@ const AIimage = styled.img`
 const Info = styled.div`
 	display: flex;
 	margin: 0 4rem 4rem;
+
+	@media (max-width: 770px) {
+		margin: 0 1rem 1rem;
+	}
 `
 
 const Label = styled.label`
 	color: grey;
+	font-size: 12px;
 `
 const InfoLink = styled.a`
 	text-decoration: none;
 `
 
 const LabelTitle = styled.label`
+	font-size: 12px;
 	white-space: nowrap;
 	color: black;
 	margin-right: .5rem;
@@ -116,6 +142,10 @@ const IntroContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
   justify-content: center;
+
+	@media (max-width: 770px) {
+		margin: 2rem 1rem;
+	}
 `
 
 const Intro = styled.p`
