@@ -53,6 +53,10 @@ const ProfilePhoto = styled.img`
 	width: 20em;
 	border-top-left-radius: 50%;
 	border-top-right-radius: 50%;
+
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	}
 `
 
 const ProjectsContainer = styled.div`
