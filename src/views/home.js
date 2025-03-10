@@ -43,6 +43,10 @@ const Products = styled.div`
 	flex-wrap: wrap;
 	margin: 8rem 4rem;
 	justify-content: space-around;
+
+	@media (max-width: 770px) {
+		margin: 0;
+	}
 `
 
 const ProfilePhoto = styled.img`
@@ -74,6 +78,11 @@ const PreviewBox = styled.div`
 	padding: 1rem;
 	margin: .5rem;
 	height: 10em;
+
+	@media (max-width: 770px) {
+		height: unset;
+	}
+
 `
 
 const DescriptionBox = styled.div`
@@ -92,6 +101,14 @@ const Description = styled.label`
 	color: #7D7D7D;
 	margin-top: .5rem;
 	font-size: 16px;
+`
+
+const PreviewImage = styled.img`
+	width: 15em;
+
+	@media (max-width: 770px) {
+		width: 100%;
+	}
 `
 
 
@@ -179,7 +196,7 @@ function Home() {
 								}} key={index} onMouseOver={handleMouseOver}
 								onMouseOut={handleMouseOut} to={work.path}>
 									<PreviewBox onMouseOver={handleChildOver} onMouseOut={handleChildOut}>
-										<img style={{ 'width': '15em' }} src={work.src} alt={work.name}></img>
+										<PreviewImage src={work.src} alt={work.name}></PreviewImage>
 									</PreviewBox>
 									<DescriptionBox onMouseOver={handleChildOver} onMouseOut={handleChildOver}>
 										<WorkName>{work.name}</WorkName>
