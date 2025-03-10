@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import askGemini from '../api/askGemini';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Pentagon from '../assets/pentagon.png';
 import ReactMarkdown from 'react-markdown';
 import Ellipsis from './ellipsis';
+import { useDispatch, useSelector } from 'react-redux';
+import { setChatHistory } from '../store/historySlice'
 
 const GeminiContainer = styled.div`
 	display: flex;
@@ -122,22 +124,40 @@ const Intro = styled.p`
 `
 
 function AskGemini() {
+	const historyFromStore = useSelector((state) => state.history.data);
+  const dispatch = useDispatch();
+
 	const [question, setQuestion] = useState('');
-	const [answer, setAnswer] = useState('');
-	const [questionToChat, setQuestionToChat] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+	const inputRef = useRef(null);
+	const bottomOfPage = useRef(null);
+	
 	const onTextInputChange = (event) => {
 		setQuestion(event.target.value);
 	}
 
+	const addToChatHistory = (type, value) => {
+		dispatch(setChatHistory({ type, text: value }));
+	};
+
+	const clearTextInput = () => {
+		if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+	}
+
+	const scrollToBottom = () => bottomOfPage.current.scrollIntoView({ behavior: "smooth" })    
+
 	const handleKeyDown = async (event) => {
 		if (event.key === 'Enter') {
-			setQuestionToChat(question);
 			setLoading(true);
+			addToChatHistory('question', question);
 			await askGemini(question).then((answer) => {
-				setAnswer(answer);
 				setLoading(false);
+				addToChatHistory('answer', answer);
+				scrollToBottom();
+				clearTextInput();
 			}).catch(() => {
 				setError('Gemini is sleeping, please try again later.')
 				setLoading(false);
@@ -164,38 +184,42 @@ function AskGemini() {
 					</Intro>
 				</IntroContainer>
 
-				{questionToChat && (
-					<UserInputContainer>
-						<UserQuestion>{questionToChat}</UserQuestion>
-					</UserInputContainer>
-				)}
-
-				{(answer || loading) && (
-					<GeminiContainer>
-						<AIimageContainer>
-							<AIimage src={Pentagon} alt="AI answering question"/>
-						</AIimageContainer>
-						<AnswerContainer>
-							{answer && (
-								<ReactMarkdown>{answer}</ReactMarkdown>
-							)}
-							{!answer && error && (
-								<NonAnswer>{error}</NonAnswer>
-							)}
-							{loading && (
-								<Loading><Ellipsis/></Loading>
-							)}
-						</AnswerContainer>
-					</GeminiContainer>
-				)}
+				{historyFromStore.map((historyItem) => (
+					<>
+					{historyItem.type === 'question' && (
+						<UserInputContainer>
+							<UserQuestion>{historyItem.text}</UserQuestion>
+						</UserInputContainer>
+					)}
+					{historyItem.type === 'answer' && (
+						<GeminiContainer>
+							<AIimageContainer>
+								<AIimage src={Pentagon} alt="AI answering question"/>
+							</AIimageContainer>
+							<AnswerContainer>
+								{historyItem.text && (
+									<ReactMarkdown>{historyItem.text}</ReactMarkdown>
+								)}
+								{!historyItem.text && error && (
+									<NonAnswer>{error}</NonAnswer>
+								)}
+								{loading && (
+									<Loading><Ellipsis/></Loading>
+								)}
+							</AnswerContainer>
+						</GeminiContainer>
+					)}
+					</>
+				))}
 
 				<TextInput
 					placeholder="Type your question here.."
 					disabled={loading}
+					ref={inputRef}
 					onKeyDown={handleKeyDown}
 					onChange={onTextInputChange}
 				/>
-				<Info>
+				<Info ref={bottomOfPage}>
 					<LabelTitle>Powered by: </LabelTitle>
 					<Label>
 						<InfoLink href="https://deepmind.google/technologies/gemini/flash/" target="_blank" rel="noreferrer"> Gemini 2.0 Flash </InfoLink> for LLM API,
