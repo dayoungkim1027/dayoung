@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import askGemini from '../api/askGemini';
 import { useState } from 'react';
 import Pentagon from '../assets/pentagon.png';
+import ReactMarkdown from 'react-markdown';
 
 const GeminiContainer = styled.div`
 	display: flex;
@@ -15,6 +16,7 @@ const AnswerContainer = styled.div`
 	max-width: 80%;
 	overflow: scroll;
 	margin-left: .5rem;
+	padding: 0 1rem;
 `
 
 const UserQuestion = styled.div`
@@ -32,12 +34,6 @@ const TextInput = styled.textarea`
 	margin: 1rem 4rem .5rem;
 	border: 1px solid grey;
 	border-radius: 7px;
-`
-
-const Answer = styled.p`
-	margin: 0;
-	padding: 1rem;
-	margin-left: auto;
 `
 
 const NonAnswer = styled.p`
@@ -147,6 +143,14 @@ function AskGemini() {
 		}
 	}
 
+	const sanitizeAnswer = (answer) => {
+		return answer
+			.replace(/\*\*/g, "<strong>")
+			.replace(/\*\*/g, "</strong>")
+			.replace(/\*/g, "<italic>")
+			.replace(/\*/g, "</italic>")
+	};
+
 	return (
 		<>
 			<OuterDiv>
@@ -182,7 +186,7 @@ function AskGemini() {
 								<Loading>...</Loading>
 							)}
 							{answer && (
-								<Answer>{answer}</Answer>
+								<ReactMarkdown>{answer}</ReactMarkdown>
 							)}
 							{!answer && error && (
 								<NonAnswer>{error}</NonAnswer>

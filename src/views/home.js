@@ -19,7 +19,7 @@ const Portfolio = styled.div`
 
 const Name = styled.h1`
 	font-weight: bolder;
-	font-size: 5em;
+	font-size: 4em;
 	margin-bottom: 0;
 	margin-left: auto;
 	text-align: right;
