@@ -66,7 +66,7 @@ const AIimage = styled.img`
 
 const Info = styled.div`
 	display: flex;
-	margin: 0 4rem;
+	margin: 0 4rem 4rem;
 `
 
 const Label = styled.label`
