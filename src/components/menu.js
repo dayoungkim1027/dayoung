@@ -25,7 +25,7 @@ const ExternalLink = styled.a`
 export const MenuItems = [
 	{
 		title: 'Ask Gemini',
-		path: '/askGemini'
+		path: '/askDeeKay'
 	}
 ];
 
