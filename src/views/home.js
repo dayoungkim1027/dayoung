@@ -89,7 +89,7 @@ function Home() {
 							<Github style={{ 'width': '45px', 'height': '50px', 'margin-left': '.5rem' }}/>
 						</ClickableIcon>
 						<ClickableIcon onClick={onButtonClick} style={{ 'cursor': 'pointer'}}>
-							<img src={ResumeDownload} alt="Download Resume" style={{ 'width': '45px', 'height': '50px', 'margin-left': '.5rem' }}/>
+							<img src={ResumeDownload} alt="Download Resume" style={{ 'width': '45px', 'height': '45px', 'margin-top': '3px', 'margin-left': '.5rem' }}/>
 						</ClickableIcon>
 					</Actions>
 				</Portfolio>
