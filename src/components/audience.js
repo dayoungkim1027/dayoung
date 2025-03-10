@@ -26,14 +26,14 @@ function Audience({
 
   return (
 		<>
-			<Tag style={{'background-color': getCssColor(postedMbti) }}>{postedMbti}</Tag>
+			<Tag style={{'backgroundColor': getCssColor(postedMbti) }}>{postedMbti}</Tag>
 			
 			<ArrowImage src={ArrowIcon} />
 			{targetMbti.length === 16 && (
-				<Tag style={{'background-color': 'none' }}>All</Tag>
+				<Tag style={{'backgroundColor': 'none' }}>All</Tag>
 			)}
-			{targetMbti.length !== 16 && targetMbti.map(target => (
-				<Tag style={{'background-color': getCssColor(target) }}>{target}</Tag>
+			{targetMbti.length !== 16 && targetMbti.map((target, index) => (
+				<Tag key={index} style={{'backgroundColor': getCssColor(target) }}>{target}</Tag>
 			))}
 		</>
 		

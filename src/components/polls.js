@@ -63,7 +63,7 @@ function Polls() {
 						{poll.target_mbti.length === 16 && 'All'}
 						{poll.target_mbti.length !== 16 && poll.target_mbti.join(',')} */}
 						{/* <Audience mbti={poll.target_mbti} gender={poll.target_gender}></Audience> */}
-						<Audience postedMbti={poll.posted_mbti} targetMbti={poll.target_mbti} />
+						<Audience key={poll.id} postedMbti={poll.posted_mbti} targetMbti={poll.target_mbti} />
 						<Like src={LikeIcon} />
 						
 						</SocialContainer>
