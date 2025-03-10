@@ -147,7 +147,9 @@ function AskGemini() {
     }
 	}
 
-	const scrollToBottom = () => bottomOfPage.current.scrollIntoView({ behavior: "smooth" })    
+	const scrollToBottom = () => {
+		bottomOfPage.current.scrollIntoView({ behavior: "smooth" }) 
+	}   
 
 	const handleKeyDown = async (event) => {
 		if (event.key === 'Enter') {
@@ -156,8 +158,9 @@ function AskGemini() {
 			await askGemini(question).then((answer) => {
 				setLoading(false);
 				addToChatHistory('answer', answer);
-				scrollToBottom();
 				clearTextInput();
+			}).then(() => {
+				scrollToBottom();
 			}).catch(() => {
 				setError('Gemini is sleeping, please try again later.')
 				setLoading(false);
@@ -203,14 +206,22 @@ function AskGemini() {
 								{!historyItem.text && error && (
 									<NonAnswer>{error}</NonAnswer>
 								)}
-								{loading && (
-									<Loading><Ellipsis/></Loading>
-								)}
 							</AnswerContainer>
 						</GeminiContainer>
 					)}
 					</>
 				))}
+
+				{loading && (
+					<GeminiContainer>
+						<AIimageContainer>
+							<AIimage src={Pentagon} alt="AI answering question"/>
+						</AIimageContainer>
+						<AnswerContainer>
+							<Loading><Ellipsis/></Loading>
+						</AnswerContainer>
+					</GeminiContainer>
+				)}
 
 				<TextInput
 					placeholder="Type your question here.."
