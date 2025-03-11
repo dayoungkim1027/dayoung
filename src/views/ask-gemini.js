@@ -85,7 +85,7 @@ const AIimage = styled.img`
 
 const Info = styled.div`
 	display: flex;
-	margin: 0 4rem 4rem;
+	margin: 0 4rem;
 
 	@media (max-width: 770px) {
 		margin: 0 1rem 1rem;
