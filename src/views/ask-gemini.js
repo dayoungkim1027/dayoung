@@ -345,7 +345,8 @@ function AskGemini() {
 			<Info ref={bottomOfPage}>
 				<LabelTitle>Powered by: </LabelTitle>
 				<Label>
-					<InfoLink href="https://deepmind.google/technologies/gemini/flash/" target="_blank" rel="noreferrer"> Gemini 2.0 Flash </InfoLink> for LLM API,
+					<InfoLink href="https://deepmind.google/technologies/gemini/flash/" target="_blank" rel="noreferrer"> Gemini 2.0 Flash </InfoLink> and
+					<InfoLink href="https://openrouter.ai/" target="_blank" rel="noreferrer"> OpenAI SDK </InfoLink> for LLM API,
 					<InfoLink href="https://vercel.com/" target="_blank" rel="noreferrer"> Vercel </InfoLink> for hosting, 
 					<InfoLink href="https://react.dev/" target="_blank" rel="noreferrer"> React </InfoLink> for frontend, 
 					<InfoLink href="https://nodejs.org/en" target="_blank" rel="noreferrer"> NodeJS </InfoLink> and
