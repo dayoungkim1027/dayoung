@@ -81,7 +81,7 @@ const PreviewBox = styled.div`
 	background-color: #EEEEEE;
 	padding: 1rem;
 	margin: .5rem;
-	height: 10em;
+	height: 11em;
 
 	@media (max-width: 770px) {
 		height: unset;
@@ -155,6 +155,12 @@ function Home() {
 			src: '/mbti-app.png',
 			path: 'https://mbti-survey-app-dayoung.vercel.app',
 			description: 'Survey app with polls and comments',
+		},
+		{
+			name: 'Weather App',
+			src: '/weather-app.png',
+			path: 'https://dayoung-weather-app.vercel.app',
+			description: 'Weather app using OpenWeatherMap API',
 		}
 	]
 
