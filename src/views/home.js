@@ -41,7 +41,7 @@ const ClickableIcon = styled.a`
 const Products = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	margin: 8rem 4rem;
+	margin: 4rem;
 	justify-content: space-around;
 
 	@media (max-width: 770px) {
@@ -161,7 +161,13 @@ function Home() {
 			src: '/weather-app.png',
 			path: 'https://dayoung-weather-app.vercel.app',
 			description: 'Weather app using OpenWeatherMap API',
-		}
+		},
+		{
+			name: 'Travel Agency App',
+			src: '/travel-agency.png',
+			path: 'https://travel-agency-app-sigma.vercel.app/',
+			description: 'Travel Agency demo site',
+		},
 	]
 
 
@@ -203,6 +209,7 @@ function Home() {
 									'whiteSpace': 'nowrap',
 									'marginTop': '1rem',
 									'backgroundColor': 'white',
+									'margin': '2rem'
 								}} key={index} onMouseOver={handleMouseOver}
 								onMouseOut={handleMouseOut} to={work.path}>
 									<PreviewBox onMouseOver={handleChildOver} onMouseOut={handleChildOut}>
